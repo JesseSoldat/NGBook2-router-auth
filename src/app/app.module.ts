@@ -6,17 +6,29 @@ import { RouterModule, Router, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home_component';
+import { AboutComponent } from './components/about_component';
+import { ContactComponent } from './components/contact_component';
+import { ProtectedComponent } from './components/protected_component';
+import { LoginComponent } from './components/login_component';
 
+import { AUTH_PROVIDERS } from './services/auth_service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'protected', component: ProtectedComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    ProtectedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +36,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ AUTH_PROVIDERS ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,13 +12,14 @@ import { ProtectedComponent } from './components/protected_component';
 import { LoginComponent } from './components/login_component';
 
 import { AUTH_PROVIDERS } from './services/auth_service';
+import { LoggedInGuard } from './guards/login_guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'protected', component: ProtectedComponent }
+  { path: 'protected', component: ProtectedComponent, canActivate: [LoggedInGuard] }
 ];
 
 @NgModule({
@@ -36,7 +37,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ AUTH_PROVIDERS ],
+  providers: [ AUTH_PROVIDERS, LoggedInGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
